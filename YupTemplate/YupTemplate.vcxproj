@@ -18,23 +18,10 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\include\Log.cpp" />
-    <ClCompile Include="..\include\LoopThread.cpp" />
-    <ClCompile Include="..\include\Thread.cpp" />
-    <ClCompile Include="main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\include\Log.h" />
-    <ClInclude Include="..\include\LoopThread.h" />
-    <ClInclude Include="..\include\Thread.h" />
-    <ClInclude Include="..\include\unichar.h" />
-    <ClInclude Include="..\include\yup.h" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{55324641-BC93-402D-9AB7-918299580A6C}</ProjectGuid>
+    <ProjectGuid>{347C2845-85A2-4848-9795-796283374DC9}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>yup</RootNamespace>
+    <RootNamespace>YupTemplate</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -81,6 +68,9 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="yup.props" Condition="exists('yup.props')"/>
+  </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
@@ -100,9 +90,8 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../include/</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -115,9 +104,8 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../include/</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -132,9 +120,8 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../include/</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -151,9 +138,8 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../include/</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -162,6 +148,56 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="lib_glew.props" />
+    <None Include="lib_opencv.props" />
+    <None Include="lib_openvr.props" />
+    <None Include="lib_sdl.props" />
+    <None Include="yup.props" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="YupTemplateApp.cpp" />
+    <ClCompile Include="yup\App.cpp" />
+    <ClCompile Include="yup\CamSource.cpp" />
+    <ClCompile Include="yup\GlUtil.cpp" />
+    <ClCompile Include="yup\PointCloudRenderer.cpp" />
+    <ClCompile Include="yup\SdlApp.cpp" />
+    <ClCompile Include="yup\ShaderCollection.cpp" />
+    <ClCompile Include="yup\util\Matrices.cpp" />
+    <ClCompile Include="yup\util\pathtools.cpp" />
+    <ClCompile Include="yup\VertexArray.cpp" />
+    <ClCompile Include="yup\VRManager.cpp" />
+    <ClCompile Include="yup\VRRenderModel.cpp" />
+    <ClCompile Include="yup\VRSdlApp.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="YupTemplateApp.h" />
+    <ClInclude Include="yup\App.h" />
+    <ClInclude Include="yup\CamSource.h" />
+    <ClInclude Include="yup\FrameBuffer.h" />
+    <ClInclude Include="yup\GlUtil.h" />
+    <ClInclude Include="yup\incl_sdl.h" />
+    <ClInclude Include="yup\Log.h" />
+    <ClInclude Include="yup\LoopThread.h" />
+    <ClInclude Include="yup\MatUtil.h" />
+    <ClInclude Include="yup\PointCloudRenderer.h" />
+    <ClInclude Include="yup\Renderable.h" />
+    <ClInclude Include="yup\SdlApp.h" />
+    <ClInclude Include="yup\ShaderCollection.h" />
+    <ClInclude Include="yup\ShaderSource.h" />
+    <ClInclude Include="yup\Singleton.h" />
+    <ClInclude Include="yup\Thread.h" />
+    <ClInclude Include="yup\unichar.h" />
+    <ClInclude Include="yup\util\Matrices.h" />
+    <ClInclude Include="yup\util\pathtools.h" />
+    <ClInclude Include="yup\util\Vectors.h" />
+    <ClInclude Include="yup\VertexArray.h" />
+    <ClInclude Include="yup\VRManager.h" />
+    <ClInclude Include="yup\VRRenderModel.h" />
+    <ClInclude Include="yup\VRSdlApp.h" />
+    <ClInclude Include="yup\yup.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

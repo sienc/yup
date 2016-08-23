@@ -3,7 +3,7 @@
 #include <thread>
 #include "yup.h"
 
-BEGIN_YUP_NAMESPACE
+BEGIN_NAMESPACE_YUP
 	
 // Thread class
 class Thread
@@ -44,4 +44,4 @@ static void ThreadFunc(yup::Thread *thread) {
 }
 
 
-END_YUP_NAMESPACE
+END_NAMESPACE_YUP

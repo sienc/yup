@@ -1,25 +1,27 @@
 #pragma once
-
 #include <cstdio>
 #include <cstdint>
-#include <memory>
 #include <map>
 #include <codecvt>
+
+#include "yup.h"
 #include "unichar.h"
 
-#define LogE(format, ...)  Log::PrintLog(LL_ERROR, __FILE__, __func__, __LINE__, format, __VA_ARGS__)
-#define LogW(format, ...)  Log::PrintLog(LL_WARN, __FILE__, __func__, __LINE__, format, __VA_ARGS__)
-#define LogI(format, ...)  Log::PrintLog(LL_INFO, __FILE__, __func__, __LINE__, format, __VA_ARGS__)
+#define LogPrint(format, ...)	yup::Log::Print(format, __VA_ARGS__)
 
-#ifdef _DEBUG
-#define LogD(format, ...)  Log::PrintLog(LL_DEBUG, __FILE__, __func__, __LINE__, format, __VA_ARGS__);
-//#define LogV(format, ...)  Log::PrintLog(LL_VERBOSE, __FILE__, __func__, __LINE__, format, __VA_ARGS__)
+#define LogE(format, ...)		yup::Log::PrintLog(yup::LL_ERROR, __FILE__, __func__, __LINE__, format, __VA_ARGS__)
+#define LogW(format, ...)		yup::Log::PrintLog(yup::LL_WARN, __FILE__, __func__, __LINE__, format, __VA_ARGS__)
+#define LogI(format, ...)		yup::Log::PrintLog(yup::LL_INFO, __FILE__, __func__, __LINE__, format, __VA_ARGS__)
+
+#ifndef NDEBUG
+#define LogD(format, ...)		yup::Log::PrintLog(yup::LL_DEBUG, __FILE__, __func__, __LINE__, format, __VA_ARGS__);
+#define LogV(format, ...)		yup::Log::PrintLog(yup::LL_VERBOSE, __FILE__, __func__, __LINE__, format, __VA_ARGS__)
 #else
-#define LogD(format, ...) ;
-//#define LogV(format, ...)  ;
-#endif // _DEBUG
+#define LogD(format, ...)		;
+#define LogV(format, ...)		;
+#endif // NDEBUG
 
-using namespace yup;
+BEGIN_NAMESPACE_YUP
 
 enum LogLevel
 {
@@ -39,70 +41,59 @@ typedef uint8_t LogOutput;
 
 class Log
 {
-	friend struct std::default_delete<Log>;
-
 private:
-
-	std::map<LogLevel, ustring> mLogLevelNames;
 	LogLevel mLogLevel;
 	LogOutput mLogOutput;
+
+	std::map<LogLevel, ustring> mLogLevelNames;
 
 	ufstream mLogFile;
 
 private:
-	Log(LogLevel level = LL_VERBOSE);
-	~Log();
+	Log(LogLevel level = LL_VERBOSE)
+		: mLogLevel(level)
+	{
+		mLogLevelNames[LL_ERROR] = TEXT("ERROR");
+		mLogLevelNames[LL_WARN] = TEXT("WARN");
+		mLogLevelNames[LL_INFO] = TEXT("INFO");
+		mLogLevelNames[LL_DEBUG] = TEXT("DEBUG");
+		mLogLevelNames[LL_VERBOSE] = TEXT("VERBOSE");
 
-	// singleton implementation
-	static Log & Instance() {
-
-		static std::unique_ptr<Log> instance;
-
-		if (!instance)
-			instance = std::unique_ptr<Log>(new Log());
-
-		return *instance;
+		mLogOutput = LO_STDOUT | LO_DEBUGWINDOW;
 	}
 
-	void outputLog(LogLevel level, const char * file, const char * func, int line, const ustring & str);
-	void output(const ustring & str);
+	~Log() {
+		if (mLogFile.is_open())
+			mLogFile.close();
+	}
+
+	// singleton implementation
+	static inline Log & Instance() {
+		static Log instance;
+		return instance;
+	}
+
+	void inline outputLog(LogLevel level, const char * file, const char * func, int line, const ustring & str);
+	void inline output(const ustring & str);
 
 public:
+	Log(const Log &) = delete;
+	Log & operator=(const Log &) = delete;
 
-	static void SetLogLevel(LogLevel level) { Instance().mLogLevel = level; }
-	static void SetLogOutput(LogOutput output) { Instance().mLogOutput = output; }
-	static void AddLogOutput(LogOutput output) { Instance().mLogOutput = Instance().mLogOutput | output; }
-	static void RemoveLogOutput(LogOutput output) { Instance().mLogOutput = Instance().mLogOutput & ~output; }
+	static inline void SetLogLevel(LogLevel level) { Instance().mLogLevel = level; }
+	static inline void SetLogOutput(LogOutput output) { Instance().mLogOutput = output; }
+	static inline void AddLogOutput(LogOutput output) { Instance().mLogOutput = Instance().mLogOutput | output; }
+	static inline void RemoveLogOutput(LogOutput output) { Instance().mLogOutput = Instance().mLogOutput & ~output; }
 
-	static void OpenLogFile(const ustring & filename);
-	static void CloseLogFile();
+	static inline void OpenLogFile(const ustring & filename);
+	static inline void CloseLogFile();
 
-	static void PrintLog(LogLevel level, const char * file, const char * func, int line, const char *format, ...);
-	static void PrintLog(LogLevel level, const char * file, const char * func, int line, const wchar_t *format, ...);
+	static inline void PrintLog(LogLevel level, const char * file, const char * func, int line, const char *format, ...);
+	static inline void PrintLog(LogLevel level, const char * file, const char * func, int line, const wchar_t *format, ...);
 
-	static void Print(const char *format, ...);
-	static void Print(const wchar_t *format, ...);
+	static inline void Print(const char *format, ...);
+	static inline void Print(const wchar_t *format, ...);
 };
-
-
-
-Log::Log(LogLevel level)
-	: mLogLevel(level)
-{
-	mLogLevelNames[LL_ERROR] = TEXT("ERROR");
-	mLogLevelNames[LL_WARN] = TEXT("WARN");
-	mLogLevelNames[LL_INFO] = TEXT("INFO");
-	mLogLevelNames[LL_DEBUG] = TEXT("DEBUG");
-	mLogLevelNames[LL_VERBOSE] = TEXT("VERBOSE");
-
-	mLogOutput = LO_STDOUT | LO_DEBUGWINDOW;
-}
-
-Log::~Log()
-{
-	if (Instance().mLogFile.is_open())
-		Instance().mLogFile.close();
-}
 
 void Log::outputLog(LogLevel level, const char * file, const char * func, int line, const ustring & str)
 {
@@ -206,3 +197,5 @@ void Log::PrintLog(LogLevel level, const char * file, const char * func, int lin
 
 	Instance().outputLog(level, file, func, line, str);
 }
+
+END_NAMESPACE_YUP

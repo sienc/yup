@@ -14,12 +14,15 @@
 #include <sstream>
 #include <fstream>
 
+#ifdef _WIN32
 #include <Windows.h>
+#endif
+
+#include "yup.h"
 
 #define UNICHAR_BUFFER_SIZE 1024
 
-namespace yup
-{
+BEGIN_NAMESPACE_YUP
 
 #ifdef _UNICODE
 
@@ -103,4 +106,4 @@ namespace yup
 
 #endif // _UNICODE
 
-}
+END_NAMESPACE_YUP
