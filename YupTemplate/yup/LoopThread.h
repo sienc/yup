@@ -1,18 +1,28 @@
 #pragma once
 
+// ========================================================================== //
+//
+//  LoopThread.h
+//  ---
+//  The native app class
+//
+//  Created: 2016-08-24
+//  Updated: 2016-08-24
+//
+//  (C) 2016 Yu-hsien Chang
+//
+// ========================================================================== //
+
 #include <atomic>
 #include "yup.h"
 #include "Thread.h"
 
 BEGIN_NAMESPACE_YUP
 
-// =============================================================
-// Class LoopThread
-//
-// Usage:
-//    - Call run() to spawn the thread
-//    - Call stop() to join the thread
-// =============================================================
+// -------------------------------------------------------------------------- //
+//  - Call run() to spawn the thread
+//  - Call stop() to join the thread
+// -------------------------------------------------------------------------- //
 class LoopThread :
 	public Thread
 {

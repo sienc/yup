@@ -50,9 +50,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$AppClassName$.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="yup\util\Matrices.cpp">
       <Filter>Source Files\Yup\Util</Filter>
     </ClCompile>
@@ -89,11 +86,14 @@
     <ClCompile Include="yup\VRSdlApp.cpp">
       <Filter>Source Files\Yup</Filter>
     </ClCompile>
+    <ClCompile Include="TemplateApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VRTemplateApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$AppClassName$.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="yup\App.h">
       <Filter>Header Files\Yup</Filter>
     </ClInclude>
@@ -166,5 +166,16 @@
     <ClInclude Include="yup\util\Vectors.h">
       <Filter>Header Files\Yup\Util</Filter>
     </ClInclude>
+    <ClInclude Include="TemplateApp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VRTemplateApp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="readme.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

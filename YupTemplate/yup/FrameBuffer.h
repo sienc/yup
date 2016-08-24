@@ -1,5 +1,18 @@
 #pragma once
 
+// ========================================================================== //
+//
+//  FrameBuffer.h
+//  ---
+//  A generalized FrameBuffer class that automatically manages the storage
+//
+//  Created: 2016-08-24
+//  Updated: 2016-08-24
+//
+//  (C) 2016 Yu-hsien Chang
+//
+// ========================================================================== //
+
 #include <cstdint>
 #include <cstring>
 

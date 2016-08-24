@@ -1,4 +1,22 @@
 #pragma once
+
+// ========================================================================== //
+//
+//  Log.h
+//  ---
+//  Logging system
+//  - Use LogX() macros the same way as printf() to log a formatted message
+//  - Use LogPrint() macro to log a raw message
+//  - Call Log::SetLogLevel() to filter messages
+//  - Call Log::SetLogOutput() to control output channels
+//
+//  Created: 2016-08-24
+//  Updated: 2016-08-24
+//
+//  (C) 2016 Yu-hsien Chang
+//
+// ========================================================================== //
+
 #include <cstdio>
 #include <cstdint>
 #include <map>

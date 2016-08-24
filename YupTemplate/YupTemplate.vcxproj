@@ -69,7 +69,7 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets">
-    <Import Project="yup.props" Condition="exists('yup.props')"/>
+    <Import Project="yup.props" Condition="exists('yup.props')" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -157,7 +157,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="YupTemplateApp.cpp" />
+    <ClCompile Include="TemplateApp.cpp" />
+    <ClCompile Include="VRTemplateApp.cpp" />
     <ClCompile Include="yup\App.cpp" />
     <ClCompile Include="yup\CamSource.cpp" />
     <ClCompile Include="yup\GlUtil.cpp" />
@@ -172,7 +173,8 @@
     <ClCompile Include="yup\VRSdlApp.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="YupTemplateApp.h" />
+    <ClInclude Include="TemplateApp.h" />
+    <ClInclude Include="VRTemplateApp.h" />
     <ClInclude Include="yup\App.h" />
     <ClInclude Include="yup\CamSource.h" />
     <ClInclude Include="yup\FrameBuffer.h" />
@@ -197,6 +199,9 @@
     <ClInclude Include="yup\VRRenderModel.h" />
     <ClInclude Include="yup\VRSdlApp.h" />
     <ClInclude Include="yup\yup.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="readme.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

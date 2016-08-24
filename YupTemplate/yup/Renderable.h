@@ -1,4 +1,18 @@
 #pragma once
+
+// ========================================================================== //
+//
+//  Renderable.h
+//  ---
+//  Base class for all renderable items in the GL space
+//
+//  Created: 2016-08-24
+//  Updated: 2016-08-24
+//
+//  (C) 2016 Yu-hsien Chang
+//
+// ========================================================================== //
+
 #ifdef YUP_INCLUDE_OPENVR
 
 #include <openvr.h>

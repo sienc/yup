@@ -1,5 +1,18 @@
 #pragma once
 
+// ========================================================================== //
+//
+//  MatUtil.h
+//  ---
+//  Utility functions for matrix handling
+//
+//  Created: 2016-08-24
+//  Updated: 2016-08-24
+//
+//  (C) 2016 Yu-hsien Chang
+//
+// ========================================================================== //
+
 #ifdef YUP_INCLUDE_OPENVR
 #ifdef YUP_INCLUDE_OPENCV
 

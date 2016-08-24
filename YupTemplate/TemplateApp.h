@@ -3,11 +3,11 @@
 
 using yup::App;
 
-class YupTemplateApp : public App
+class $AppClassName$ : public App
 {
 public:
-	YupTemplateApp(int argc, char *argv[]);
-	~YupTemplateApp();
+	$AppClassName$(int argc, char *argv[]);
+	~$AppClassName$();
 
 	bool init() override;
 	bool update() override;
