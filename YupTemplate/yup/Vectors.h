@@ -5,7 +5,7 @@
 //
 //  AUTHOR: Song Ho Ahn (song.ahn@gmail.com)
 // CREATED: 2007-02-14
-// UPDATED: 2013-01-20
+// UPDATED: 2016-04-04
 //
 // Copyright (C) 2007-2013 Song Ho Ahn
 ///////////////////////////////////////////////////////////////////////////////
@@ -78,6 +78,7 @@ struct Vector3
     void        set(float x, float y, float z);
     float       length() const;                         //
     float       distance(const Vector3& vec) const;     // distance between two vectors
+    float       angle(const Vector3& vec) const;        // angle between two vectors
     Vector3&    normalize();                            //
     float       dot(const Vector3& vec) const;          // dot product
     Vector3     cross(const Vector3& vec) const;        // cross product
@@ -149,9 +150,6 @@ struct Vector4
 
     friend Vector4 operator*(const float a, const Vector4 vec);
     friend std::ostream& operator<<(std::ostream& os, const Vector4& vec);
-
-	float getYawAngle() { return atan2(-z, x); }  // OpenGL coordinates: starting from +X rotating along +Y
-	float getPitchAngle() { return atan2(y, sqrt(x*x+z*z)); }
 };
 
 
@@ -369,6 +367,15 @@ inline float Vector3::length() const {
 
 inline float Vector3::distance(const Vector3& vec) const {
     return sqrtf((vec.x-x)*(vec.x-x) + (vec.y-y)*(vec.y-y) + (vec.z-z)*(vec.z-z));
+}
+
+inline float Vector3::angle(const Vector3& vec) const {
+    // return angle between [0, 180]
+    float l1 = this->length();
+    float l2 = vec.length();
+    float d = this->dot(vec);
+    float angle = acosf(d / (l1 * l2)) / 3.141592f * 180.0f;
+    return angle;
 }
 
 inline Vector3& Vector3::normalize() {
