@@ -19,8 +19,8 @@
 #include <mutex>
 
 #include "yup.h"
-#include "incl_sdl.h"
-#include "util/Matrices.h"
+#include "inc_sdl.h"
+#include "Matrices.h"
 
 #ifdef YUP_INCLUDE_OPENCV
 #include <opencv2/core.hpp>

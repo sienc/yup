@@ -19,10 +19,10 @@
 #include <string>
 
 #include "yup.h"
-#include "incl_sdl.h"
+#include "inc_sdl.h"
 #include "ShaderSource.h"
 #include "GlUtil.h"
-#include "util/Matrices.h"
+#include "Matrices.h"
 
 #define TEXTURE_RGB			GL_TEXTURE0
 #define TEXTURE_YUV_Y		GL_TEXTURE0

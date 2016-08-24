@@ -18,7 +18,7 @@
 #include <atomic>
 
 #include "yup.h"
-#include "incl_sdl.h"
+#include "inc_sdl.h"
 #include "App.h"
 
 BEGIN_NAMESPACE_YUP

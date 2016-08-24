@@ -18,8 +18,8 @@
 #include <openvr.h>
 
 #include "yup.h"
-#include "incl_sdl.h"
-#include "util/Matrices.h"
+#include "inc_sdl.h"
+#include "Matrices.h"
 
 BEGIN_NAMESPACE_YUP_GL
 

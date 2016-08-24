@@ -20,9 +20,9 @@
 #include <vector>
 
 #include "yup.h"
-#include "incl_sdl.h"
+#include "inc_sdl.h"
 #include "Renderable.h"
-#include "Util/Matrices.h"
+#include "Matrices.h"
 
 #include "VRRenderModel.h"
 

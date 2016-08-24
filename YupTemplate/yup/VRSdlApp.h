@@ -16,7 +16,7 @@
 #ifdef YUP_INCLUDE_OPENVR
 #ifdef YUP_INCLUDE_SDL
 
-#include "incl_sdl.h"
+#include "inc_sdl.h"
 #include "SdlApp.h"
 #include "VRManager.h"
 

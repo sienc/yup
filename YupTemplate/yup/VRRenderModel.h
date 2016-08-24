@@ -19,7 +19,7 @@
 #include <string>
 
 #include "yup.h"
-#include "incl_sdl.h"
+#include "inc_sdl.h"
 
 BEGIN_NAMESPACE_YUP
 

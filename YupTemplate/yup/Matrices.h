@@ -216,6 +216,9 @@ public:
     friend Vector4 operator*(const Vector4& vec, const Matrix4& m); // pre-multiplication
     friend std::ostream& operator<<(std::ostream& os, const Matrix4& m);
 
+	// yhc added
+	Matrix4& perspective(float fov, float aspect, float zNear, float zFar); // Set the matrix as a projection matrix
+
 protected:
 
 private:
@@ -920,6 +923,44 @@ inline std::ostream& operator<<(std::ostream& os, const Matrix4& m)
        << "[" << std::setw(10) << m[3] << " " << std::setw(10) << m[7] << " " << std::setw(10) << m[11] <<  " " << std::setw(10) << m[15] << "]\n";
     os << std::resetiosflags(std::ios_base::fixed | std::ios_base::floatfield);
     return os;
+}
+
+
+
+// yhc add
+
+// * Fill in the values of a perspective projection matrix
+// * FOV is vertical
+inline Matrix4& Matrix4::perspective(float fov, float aspect, float zNear, float zFar)
+{
+	//const float n_over_d = 1.0f / tan(fov * (float)M_PI / 360.0f);
+	//const float n_over_h = sqrt(aspect*aspect + 1) * n_over_d;
+	//const float neg_depth = zNear - zFar;
+
+	const float n_over_h = 1.0f / tan(fov * (float)M_PI / 360.0f);
+	const float neg_depth = zNear - zFar;
+
+	m[0] = n_over_h / aspect;
+	m[1] = 0;
+	m[2] = 0;
+	m[3] = 0;
+
+	m[4] = 0;
+	m[5] = n_over_h;
+	m[6] = 0;
+	m[7] = 0;
+
+	m[8] = 0;
+	m[9] = 0;
+	m[10] = (zFar + zNear) / neg_depth;
+	m[11] = -1;
+
+	m[12] = 0;
+	m[13] = 0;
+	m[14] = 2.0f*(zNear*zFar) / neg_depth;
+	m[15] = 0;
+
+	return *this;
 }
 // END OF MATRIX4 INLINE //////////////////////////////////////////////////////
 #endif
