@@ -1,18 +1,18 @@
-///////////////////////////////////////////////////////////////////////////////
-// Vectors.h
-// =========
-// 2D/3D/4D vectors
+// ========================================================================== //
 //
-//  AUTHOR: Song Ho Ahn (song.ahn@gmail.com)
-// CREATED: 2007-02-14
-// UPDATED: 2016-04-04
+//  Vectors.h
+//  ---
+//  Based on Song Ho Ahn (song.ahn@gmail.com)
+//  2D/3D/4D vectors
 //
-// Copyright (C) 2007-2013 Song Ho Ahn
-///////////////////////////////////////////////////////////////////////////////
+//  Created: 2016-08-24
+//  Updated: 2016-08-24
+//
+//  (C) 2016 Yu-hsien Chang
+//
+// ========================================================================== //
 
-
-#ifndef VECTORS_H_DEF
-#define VECTORS_H_DEF
+#pragma once
 
 #include <cmath>
 #include <iostream>
@@ -536,5 +536,3 @@ inline std::ostream& operator<<(std::ostream& os, const Vector4& vec) {
     return os;
 }
 // END OF VECTOR4 /////////////////////////////////////////////////////////////
-
-#endif

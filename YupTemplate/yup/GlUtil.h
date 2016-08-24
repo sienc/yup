@@ -1,8 +1,6 @@
-#pragma once
-
 // ========================================================================== //
 //
-//  GlUtil.h
+//  glutil.h
 //  ---
 //  Utility functions for Handling GL textures and buffers
 //
@@ -12,6 +10,8 @@
 //  (C) 2016 Yu-hsien Chang
 //
 // ========================================================================== //
+
+#pragma once
 
 #ifdef YUP_INCLUDE_GLEW
 

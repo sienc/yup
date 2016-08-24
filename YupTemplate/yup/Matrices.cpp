@@ -1,22 +1,20 @@
-///////////////////////////////////////////////////////////////////////////////
-// Matrice.cpp
-// ===========
-// NxN Matrix Math classes
+// ========================================================================== //
 //
-// The elements of the matrix are stored as column major order.
-// | 0 2 |    | 0 3 6 |    |  0  4  8 12 |
-// | 1 3 |    | 1 4 7 |    |  1  5  9 13 |
-//            | 2 5 8 |    |  2  6 10 14 |
-//                         |  3  7 11 15 |
+//  Matrice.cpp
+//  ---
+//  Based on Song Ho Ahn (song.ahn@gmail.com)
+//  The elements of the matrix are stored as column major order.
+//  | 0 2 |    | 0 3 6 |    |  0  4  8 12 |
+//  | 1 3 |    | 1 4 7 |    |  1  5  9 13 |
+//             | 2 5 8 |    |  2  6 10 14 |
+//                          |  3  7 11 15 |
 //
-// Dependencies: Vector2, Vector3, Vector3
+//  Created: 2016-08-24
+//  Updated: 2016-08-24
 //
-//  AUTHOR: Song Ho Ahn (song.ahn@gmail.com)
-// CREATED: 2005-06-24
-// UPDATED: 2016-07-07
+//  (C) 2016 Yu-hsien Chang
 //
-// Copyright (C) 2005 Song Ho Ahn
-///////////////////////////////////////////////////////////////////////////////
+// ========================================================================== //
 
 #include <cmath>
 #include <algorithm>

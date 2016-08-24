@@ -1,8 +1,17 @@
-//========= Copyright Valve Corporation ============//
+// ========================================================================== //
+//
+//  Matrice.cpp
+//  ---
+//  Based on OpenVR utilities
+//
+//  Created: 2016-08-24
+//  Updated: 2016-08-24
+//
+//  (C) 2016 Yu-hsien Chang
+//
+// ========================================================================== //
 
 #include "pathtools.h"
-//#include "hmdplatform_private.h"
-//#include "vrcommon/strtools.h"
 
 #if defined( _WIN32)
 #include <Windows.h>
