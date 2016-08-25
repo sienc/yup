@@ -1,10 +1,17 @@
-#pragma once
+// ========================================================================== //
+//
+//  LoopThread.h
+//  ---
+//  Unified char and string types
+//
+//  Created: 2016-08-24
+//  Updated: 2016-08-24
+//
+//  (C) 2016 Yu-hsien Chang
+//
+// ========================================================================== //
 
-////////////////////////////////////////////////////////////////////////////////
-//
-// - Unified char and string types
-//
-////////////////////////////////////////////////////////////////////////////////
+#pragma once
 
 #include <cstdio>
 #include <cstdlib>
@@ -14,12 +21,15 @@
 #include <sstream>
 #include <fstream>
 
+#ifdef _WIN32
 #include <Windows.h>
+#endif
+
+#include "yup.h"
 
 #define UNICHAR_BUFFER_SIZE 1024
 
-namespace yup
-{
+BEGIN_NAMESPACE_YUP
 
 #ifdef _UNICODE
 
@@ -103,4 +113,4 @@ namespace yup
 
 #endif // _UNICODE
 
-}
+END_NAMESPACE_YUP

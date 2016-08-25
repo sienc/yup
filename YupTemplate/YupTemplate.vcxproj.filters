@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Yup">
+      <UniqueIdentifier>{0f6d4964-92b6-4805-93d7-3d5b050bccc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Yup">
+      <UniqueIdentifier>{abb8dd3c-10e6-462f-b3c7-b2f33f201a21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Property Sheets">
+      <UniqueIdentifier>{a04f9fc8-ca18-4f64-be3b-b3906c888dd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Yup\Core">
+      <UniqueIdentifier>{76d147ed-db72-4233-9f74-0d32f1f1e72a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Yup\Core">
+      <UniqueIdentifier>{b5a44ccc-57f3-4bb9-82ee-5c59e229a51b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Yup\GL">
+      <UniqueIdentifier>{83bddf55-8731-4ff2-8b4c-ca49895fdf94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Yup\VR">
+      <UniqueIdentifier>{2fdc9908-fc0d-4473-9f8a-0aaede3a9c9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Yup\etc">
+      <UniqueIdentifier>{3e97424a-c0d2-44ad-a9e7-b01e06efdd83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Yup\GL">
+      <UniqueIdentifier>{27ea0248-f681-45fd-ac68-2aa5bb519c8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Yup\VR">
+      <UniqueIdentifier>{99dd8fe7-71ff-4845-a8ec-749ebf91f716}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Yup\etc">
+      <UniqueIdentifier>{19bf221e-8821-43a5-a959-cd015955a044}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="lib_opencv.props">
+      <Filter>Property Sheets</Filter>
+    </None>
+    <None Include="lib_openvr.props">
+      <Filter>Property Sheets</Filter>
+    </None>
+    <None Include="lib_sdl.props">
+      <Filter>Property Sheets</Filter>
+    </None>
+    <None Include="yup.props">
+      <Filter>Property Sheets</Filter>
+    </None>
+    <None Include="rescopy.bat">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="lib_glew_static.props">
+      <Filter>Property Sheets</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TemplateApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="yup\App.cpp">
+      <Filter>Source Files\Yup\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="yup\SdlApp.cpp">
+      <Filter>Source Files\Yup\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="yup\Matrices.cpp">
+      <Filter>Source Files\Yup\etc</Filter>
+    </ClCompile>
+    <ClCompile Include="yup\pathtools.cpp">
+      <Filter>Source Files\Yup\etc</Filter>
+    </ClCompile>
+    <ClCompile Include="yup\PointCloudRenderer.cpp">
+      <Filter>Source Files\Yup\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="yup\ShaderCollection.cpp">
+      <Filter>Source Files\Yup\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="yup\VertexArray.cpp">
+      <Filter>Source Files\Yup\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="yup\VRManager.cpp">
+      <Filter>Source Files\Yup\VR</Filter>
+    </ClCompile>
+    <ClCompile Include="yup\VRRenderModel.cpp">
+      <Filter>Source Files\Yup\VR</Filter>
+    </ClCompile>
+    <ClCompile Include="yup\VRSdlApp.cpp">
+      <Filter>Source Files\Yup\VR</Filter>
+    </ClCompile>
+    <ClCompile Include="yup\glutil.cpp">
+      <Filter>Source Files\Yup\GL</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="TemplateApp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="yup\App.h">
+      <Filter>Header Files\Yup\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="yup\SdlApp.h">
+      <Filter>Header Files\Yup\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="yup\Thread.h">
+      <Filter>Header Files\Yup\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="yup\unichar.h">
+      <Filter>Header Files\Yup\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="yup\LoopThread.h">
+      <Filter>Header Files\Yup\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="yup\Log.h">
+      <Filter>Header Files\Yup\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="yup\FrameBuffer.h">
+      <Filter>Header Files\Yup\etc</Filter>
+    </ClInclude>
+    <ClInclude Include="yup\Matrices.h">
+      <Filter>Header Files\Yup\etc</Filter>
+    </ClInclude>
+    <ClInclude Include="yup\pathtools.h">
+      <Filter>Header Files\Yup\etc</Filter>
+    </ClInclude>
+    <ClInclude Include="yup\PointCloudRenderer.h">
+      <Filter>Header Files\Yup\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="yup\Renderable.h">
+      <Filter>Header Files\Yup\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="yup\ShaderCollection.h">
+      <Filter>Header Files\Yup\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="yup\ShaderSource.h">
+      <Filter>Header Files\Yup\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="yup\Vectors.h">
+      <Filter>Header Files\Yup\etc</Filter>
+    </ClInclude>
+    <ClInclude Include="yup\Singleton.h">
+      <Filter>Header Files\Yup\etc</Filter>
+    </ClInclude>
+    <ClInclude Include="yup\VertexArray.h">
+      <Filter>Header Files\Yup\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="yup\VRManager.h">
+      <Filter>Header Files\Yup\VR</Filter>
+    </ClInclude>
+    <ClInclude Include="yup\VRRenderModel.h">
+      <Filter>Header Files\Yup\VR</Filter>
+    </ClInclude>
+    <ClInclude Include="yup\VRSdlApp.h">
+      <Filter>Header Files\Yup\VR</Filter>
+    </ClInclude>
+    <ClInclude Include="yup\yup.h">
+      <Filter>Header Files\Yup\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="yup\inc_sdl.h">
+      <Filter>Header Files\Yup\etc</Filter>
+    </ClInclude>
+    <ClInclude Include="yup\glutil.h">
+      <Filter>Header Files\Yup\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="yup\matutil.h">
+      <Filter>Header Files\Yup\etc</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="readme.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="log.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+  </ItemGroup>
+</Project>

@@ -1,9 +1,22 @@
+// ========================================================================== //
+//
+//  Thread.h
+//  ---
+//  A thread class
+//
+//  Created: 2016-08-24
+//  Updated: 2016-08-24
+//
+//  (C) 2016 Yu-hsien Chang
+//
+// ========================================================================== //
+
 #pragma once
 
 #include <thread>
 #include "yup.h"
 
-BEGIN_YUP_NAMESPACE
+BEGIN_NAMESPACE_YUP
 	
 // Thread class
 class Thread
@@ -44,4 +57,4 @@ static void ThreadFunc(yup::Thread *thread) {
 }
 
 
-END_YUP_NAMESPACE
+END_NAMESPACE_YUP
