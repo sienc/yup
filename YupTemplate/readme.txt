@@ -2,7 +2,7 @@
 
 1. Export YupTemplate as a Porject Template
 
-2. Add the collowing lines to .vstemplate
+2. Add the following lines to .vstemplate
 
 <TemplateData>
 	<Name>Yup App</Name>
@@ -25,9 +25,10 @@
 <TemplateContent>
 
 3. Set ReplaceParameters="true" foe the following items
+- YupTemplate.vcxproj.filters
 - main.cpp
-- TemplateApp.h
 - TemplateApp.cpp
+- TemplateApp.h
 
 4. Change all TemplateApp to $AppClassName$ in the following files
 - .vstemplate
