@@ -166,9 +166,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="lib_glew.props" />
-    <None Include="lib_opencv.props" />
-    <None Include="lib_openvr.props" />
+    <None Include="lib_opencv.props">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lib_openvr.props">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="lib_sdl.props" />
+    <None Include="rescopy.bat" />
     <None Include="yup.props" />
   </ItemGroup>
   <ItemGroup>
@@ -187,6 +192,7 @@
     <ClCompile Include="yup\VRSdlApp.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="resource.h" />
     <ClInclude Include="TemplateApp.h" />
     <ClInclude Include="yup\App.h" />
     <ClInclude Include="yup\FrameBuffer.h" />
@@ -213,6 +219,7 @@
     <ClInclude Include="yup\yup.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="log.txt" />
     <Text Include="readme.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -3,6 +3,7 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
     <SdlDir>$(LibDir)SDL2-2.0.3-vc140\</SdlDir>
+    <YupResFiles>$(SdlDir)bin\$(YupPlatform)\SDL2.dll;$(YupResFiles)</YupResFiles>
   </PropertyGroup>
   <PropertyGroup>
     <_PropertySheetDisplayName>Library - SDL</_PropertySheetDisplayName>
@@ -21,6 +22,9 @@
   <ItemGroup>
     <BuildMacro Include="SdlDir">
       <Value>$(SdlDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="YupResFiles">
+      <Value>$(YupResFiles)</Value>
     </BuildMacro>
   </ItemGroup>
 </Project>

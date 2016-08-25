@@ -3,7 +3,7 @@
   <ImportGroup Label="PropertySheets" />
   <!-- User Macros -->
   <PropertyGroup Label="UserMacros">
-    <OpenCVDir>$(LibDir)opencv-3.1/</OpenCVDir>
+    <OpenCVDir>$(LibDir)opencv-3.1\</OpenCVDir>
   </PropertyGroup>
   <!-- Global Settings -->
   <PropertyGroup>
@@ -20,6 +20,7 @@
   </ItemDefinitionGroup>
   <!-- Debug -->
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <YupResFiles>$(OpenCVDir)bin\$(YupPlatform)\opencv_world310d.dll;$(YupResFiles)</YupResFiles>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
     <Link>
@@ -28,6 +29,7 @@
   </ItemDefinitionGroup>
   <!-- Release -->
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <YupResFiles>$(OpenCVDir)bin\$(YupPlatform)\opencv_world310.dll;$(YupResFiles)</YupResFiles>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
     <Link>
@@ -38,6 +40,9 @@
   <ItemGroup>
     <BuildMacro Include="OpenCVDir">
       <Value>$(OpenCVDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="YupResFiles">
+      <Value>$(YupResFiles)</Value>
     </BuildMacro>
   </ItemGroup>
 </Project>

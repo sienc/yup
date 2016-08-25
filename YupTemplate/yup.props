@@ -4,7 +4,7 @@
   <!-- User Macros -->
   <PropertyGroup Label="UserMacros">
     <LibDir>..\..\..\Libraries\</LibDir>
-    <BuildDir>$(SolutionDir)build/</BuildDir>
+    <BuildDir>$(SolutionDir)build\</BuildDir>
   </PropertyGroup>
   <!-- Global Settings -->
   <PropertyGroup>
@@ -14,6 +14,16 @@
     <ClCompile>
       <PreprocessorDefinitions>_UNICODE;UNICODE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
     </ClCompile>
+    <PostBuildEvent>
+      <Command>SETLOCAL
+
+set RES_FILES=$(YupResFiles)
+set OUT_DIR=$(OutDir)
+
+rescopy.bat
+
+ENDLOCAL</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <!-- Debug -->
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">

@@ -63,6 +63,9 @@
     <None Include="yup.props">
       <Filter>Property Sheets</Filter>
     </None>
+    <None Include="rescopy.bat">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -178,9 +181,15 @@
     <ClInclude Include="yup\matutil.h">
       <Filter>Header Files\Yup\etc</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="readme.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="log.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>
