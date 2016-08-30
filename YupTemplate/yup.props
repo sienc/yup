@@ -15,14 +15,16 @@
       <PreprocessorDefinitions>_UNICODE;UNICODE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
     </ClCompile>
     <PostBuildEvent>
-      <Command>SETLOCAL
+      <Command>
+        SETLOCAL ENABLEDELAYEDEXPANSION
 
-set RES_FILES=$(YupResFiles)
-set OUT_DIR=$(OutDir)
+        set RES_FILES=$(YupResFiles)
+        set OUT_DIR=$(OutDir)
 
-rescopy.bat
+        rescopy.bat
 
-ENDLOCAL</Command>
+        ENDLOCAL
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <!-- Debug -->
