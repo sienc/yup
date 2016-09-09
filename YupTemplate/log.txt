@@ -12,6 +12,7 @@ Log
 * Reorganized matutil.h
 * Updated VRManager
 * Added LoopThread::waitForInitResult()
+* Added post-build copy task to additional output dir
 
 2016-08-25 v0.1.0
 * Automatically copy required DLL and resources to output folder

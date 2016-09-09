@@ -55,6 +55,7 @@ public:
 
 	int width() const { return mWidth; }
 	int height() const { return mHeight; }
+	int colorDepth() const { return mColorDepth; }
 	int pitch() const { return mWidth * mColorDepth; }
 	int size() const { return mWidth * mHeight * mColorDepth; } // Return the size of mdata
 

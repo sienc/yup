@@ -1,10 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+  Library - SDL
+  ===
+  
+  Created: 2016-08-24
+  Updated: 2015-09-09
+
+  (C) 2016 Yu-hsien Chang
+-->
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets" />
+  <!-- User Macros -->
   <PropertyGroup Label="UserMacros">
-    <SdlDir>$(LibDir)SDL2-2.0.3-vc140\</SdlDir>
-    <YupResFiles>$(SdlDir)bin\$(YupPlatform)\SDL2.dll;$(YupResFiles)</YupResFiles>
+    <SdlDir>$(YupLibDir)SDL2-2.0.3-vc140\</SdlDir>
+    <YupIncludedResourceFiles> $(SdlDir)bin\$(YupPlatform)\SDL2.dll;$(YupIncludedResourceFiles)</YupIncludedResourceFiles>
   </PropertyGroup>
+  <!-- Global Settings -->
   <PropertyGroup>
     <_PropertySheetDisplayName>Library - SDL</_PropertySheetDisplayName>
   </PropertyGroup>
@@ -19,12 +30,13 @@
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
+  <!-- Build Macros -->
   <ItemGroup>
     <BuildMacro Include="SdlDir">
       <Value>$(SdlDir)</Value>
     </BuildMacro>
-    <BuildMacro Include="YupResFiles">
-      <Value>$(YupResFiles)</Value>
+    <BuildMacro Include="YupIncludedResourceFiles">
+      <Value>$(YupIncludedResourceFiles)</Value>
     </BuildMacro>
   </ItemGroup>
 </Project>

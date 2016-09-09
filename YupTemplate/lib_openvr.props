@@ -1,10 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+  Library - OpenVR
+  ===
+  
+  Created: 2016-08-24
+  Updated: 2015-09-09
+
+  (C) 2016 Yu-hsien Chang
+-->
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets" />
+  <!-- User Macros -->
   <PropertyGroup Label="UserMacros">
-    <OpenVRDir>$(LibDir)openvr-1.0.2\</OpenVRDir>
-    <YupResFiles>$(OpenVrDir)bin\$(YupPlatform)\openvr_api.dll;$(YupResFiles)</YupResFiles>
+    <OpenVRDir>$(YupLibDir)openvr-1.0.2\</OpenVRDir>
+    <YupIncludedResourceFiles>$(OpenVrDir)bin\$(YupPlatform)\openvr_api.dll;$(YupIncludedResourceFiles)</YupIncludedResourceFiles>
   </PropertyGroup>
+  <!-- Global Settings -->
   <PropertyGroup>
     <_PropertySheetDisplayName>Library - OpenVR</_PropertySheetDisplayName>
   </PropertyGroup>
@@ -18,12 +29,13 @@
       <AdditionalDependencies>openvr_api.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
+  <!-- Build Macros -->
   <ItemGroup>
     <BuildMacro Include="OpenVRDir">
       <Value>$(OpenVRDir)</Value>
     </BuildMacro>
-    <BuildMacro Include="YupResFiles">
-      <Value>$(YupResFiles)</Value>
+    <BuildMacro Include="YupIncludedResourceFiles">
+      <Value>$(YupIncludedResourceFiles)</Value>
     </BuildMacro>
   </ItemGroup>
 </Project>

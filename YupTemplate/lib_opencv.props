@@ -1,9 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+  Library - OpenCV
+  ===
+  
+  Created: 2016-08-24
+  Updated: 2015-09-09
+
+  (C) 2016 Yu-hsien Chang
+-->
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets" />
   <!-- User Macros -->
   <PropertyGroup Label="UserMacros">
-    <OpenCVDir>$(LibDir)opencv-3.1\</OpenCVDir>
+    <OpenCVDir>$(YupLibDir)opencv-3.1\</OpenCVDir>
   </PropertyGroup>
   <!-- Global Settings -->
   <PropertyGroup>
@@ -19,19 +28,19 @@
     </Link>
   </ItemDefinitionGroup>
   <!-- Debug -->
-  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
-    <YupResFiles>$(OpenCVDir)bin\$(YupPlatform)\opencv_world310d.dll;$(YupResFiles)</YupResFiles>
+  <PropertyGroup Condition="'$(Configuration)'=='Debug' or '$(YupConfiguration)'=='Debug'">
+    <YupIncludedResourceFiles>$(OpenCVDir)bin\$(YupPlatform)\opencv_world310d.dll;$(YupIncludedResourceFiles)</YupIncludedResourceFiles>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug' or '$(YupConfiguration)'=='Debug'">
     <Link>
       <AdditionalDependencies>opencv_world310d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <!-- Release -->
-  <PropertyGroup Condition="'$(Configuration)'=='Release'">
-    <YupResFiles>$(OpenCVDir)bin\$(YupPlatform)\opencv_world310.dll;$(YupResFiles)</YupResFiles>
-  </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
+  <PropertyGroup Condition="'$(Configuration)'=='Release' or '$(YupConfiguration)'=='Release'">
+    <YupIncludedResourceFiles>$(OpenCVDir)bin\$(YupPlatform)\opencv_world310.dll;$(YupIncludedResourceFiles)</YupIncludedResourceFiles>
+    </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Release' or '$(YupConfiguration)'=='Release'">
     <Link>
       <AdditionalDependencies>opencv_world310.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
@@ -41,8 +50,8 @@
     <BuildMacro Include="OpenCVDir">
       <Value>$(OpenCVDir)</Value>
     </BuildMacro>
-    <BuildMacro Include="YupResFiles">
-      <Value>$(YupResFiles)</Value>
+    <BuildMacro Include="YupIncludedResourceFiles">
+      <Value>$(YupIncludedResourceFiles)</Value>
     </BuildMacro>
   </ItemGroup>
 </Project>
