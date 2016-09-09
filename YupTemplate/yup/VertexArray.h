@@ -28,6 +28,10 @@
 
 BEGIN_NAMESPACE_YUP_GL
 
+// ========================================================================== //
+// * GL vertex array
+// 
+// ========================================================================== //
 class VertexArray
 {
 private:
@@ -47,7 +51,6 @@ protected:
 	std::mutex mMutex;
 
 public:
-	//VertexArray();
 	VertexArray(int stride1, int stride2 = 0, int stride3 = 0);
 	virtual ~VertexArray();
 

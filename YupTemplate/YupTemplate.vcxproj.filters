@@ -86,12 +86,6 @@
     <ClCompile Include="yup\pathtools.cpp">
       <Filter>Source Files\Yup\etc</Filter>
     </ClCompile>
-    <ClCompile Include="yup\PointCloudRenderer.cpp">
-      <Filter>Source Files\Yup\GL</Filter>
-    </ClCompile>
-    <ClCompile Include="yup\ShaderCollection.cpp">
-      <Filter>Source Files\Yup\GL</Filter>
-    </ClCompile>
     <ClCompile Include="yup\VertexArray.cpp">
       <Filter>Source Files\Yup\GL</Filter>
     </ClCompile>
@@ -138,9 +132,6 @@
     </ClInclude>
     <ClInclude Include="yup\pathtools.h">
       <Filter>Header Files\Yup\etc</Filter>
-    </ClInclude>
-    <ClInclude Include="yup\PointCloudRenderer.h">
-      <Filter>Header Files\Yup\GL</Filter>
     </ClInclude>
     <ClInclude Include="yup\Renderable.h">
       <Filter>Header Files\Yup\GL</Filter>

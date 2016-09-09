@@ -81,13 +81,15 @@ public:
 	VRManager();
 	~VRManager();
 
-	bool init();
-	bool initGL();
-	void shutdown();
-	void shutdownGL();
+	virtual bool init();
+	virtual bool initGL();
+	virtual void shutdown();
+	virtual void shutdownGL();
 
 	void setScene(Renderable *scene) { mScene = scene; }
-	void RenderFrame();
+	void render();
+	void renderDisplay();
+
 	void HandleInput();
 
 	void UpdateHMDMatrixPose();
@@ -98,6 +100,7 @@ public:
 	bool isSystemReady() const { return (m_pHMD != nullptr); }
 	bool isGLReady() const { return mIsGLReady; }
 	bool isRenderReady() const { return isSystemReady() && isGLReady(); }
+	bool toShutdown() const { return mShutdown; }
 
 	void showControllers(bool show) { mShowControllers = show; }
 
@@ -127,7 +130,6 @@ private:
 
 	bool CreateAllShaders();
 
-	void RenderDisplay();
 	void DrawControllers();
 
 	inline uint64_t ButtonMaskFromId(vr::EVRButtonId id) { return 1ull << id; }

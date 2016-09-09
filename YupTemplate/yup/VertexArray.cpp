@@ -34,30 +34,6 @@ bool VertexArray::init()
 	glGenVertexArrays(1, &mVAO);
 	glBindVertexArray(mVAO);
 	glGenBuffers(1, &mVertBufferId);
-	
-	//GLsizei stride = sizeof(float) * (mStride0 + mStride1 + mStride2);
-
-	//uintptr_t offset = 0;
-	//if (mStride0 > 0)
-	//{
-	//	glEnableVertexAttribArray(0);
-	//	glVertexAttribPointer(0, mStride0, GL_FLOAT, GL_FALSE, stride, (const void *)offset);
-	//	offset += sizeof(float) * mStride0;
-	//}
-
-	//if (mStride1 > 0)
-	//{
-	//	glEnableVertexAttribArray(1);
-	//	glVertexAttribPointer(1, mStride1, GL_FLOAT, GL_FALSE, stride, (const void *)offset);
-	//	offset += sizeof(float) * mStride1;
-	//}
-
-	//if (mStride2 > 0)
-	//{
-	//	glEnableVertexAttribArray(2);
-	//	glVertexAttribPointer(2, mStride2, GL_FLOAT, GL_FALSE, stride, (const void *)offset);
-	//}
-
 	glBindVertexArray(0);
 
 	updateVertexBuffer();

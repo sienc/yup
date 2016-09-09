@@ -1,6 +1,6 @@
 // ========================================================================== //
 //
-//  GlUtil.cpp
+//  glutil.cpp
 //  ---
 //
 //  Created: 2016-08-24
@@ -12,7 +12,7 @@
 
 #ifdef YUP_INCLUDE_GLEW
 
-#include "GlUtil.h"
+#include "glutil.h"
 #include "ShaderCollection.h"
 #include "Log.h"
 

@@ -61,15 +61,31 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="lib_glew_static.props" />
+    <Import Project="lib_opencv.props" />
+    <Import Project="lib_openvr.props" />
+    <Import Project="lib_sdl.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="lib_glew_static.props" />
+    <Import Project="lib_opencv.props" />
+    <Import Project="lib_openvr.props" />
+    <Import Project="lib_sdl.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="lib_glew_static.props" />
+    <Import Project="lib_opencv.props" />
+    <Import Project="lib_openvr.props" />
+    <Import Project="lib_sdl.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="lib_glew_static.props" />
+    <Import Project="lib_opencv.props" />
+    <Import Project="lib_openvr.props" />
+    <Import Project="lib_sdl.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -167,9 +183,7 @@
     <ClCompile Include="yup\glutil.cpp" />
     <ClCompile Include="yup\Matrices.cpp" />
     <ClCompile Include="yup\pathtools.cpp" />
-    <ClCompile Include="yup\PointCloudRenderer.cpp" />
     <ClCompile Include="yup\SdlApp.cpp" />
-    <ClCompile Include="yup\ShaderCollection.cpp" />
     <ClCompile Include="yup\VertexArray.cpp" />
     <ClCompile Include="yup\VRManager.cpp" />
     <ClCompile Include="yup\VRRenderModel.cpp" />
@@ -187,7 +201,6 @@
     <ClInclude Include="yup\Matrices.h" />
     <ClInclude Include="yup\matutil.h" />
     <ClInclude Include="yup\pathtools.h" />
-    <ClInclude Include="yup\PointCloudRenderer.h" />
     <ClInclude Include="yup\Renderable.h" />
     <ClInclude Include="yup\SdlApp.h" />
     <ClInclude Include="yup\ShaderCollection.h" />

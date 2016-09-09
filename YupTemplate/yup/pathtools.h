@@ -1,8 +1,8 @@
 // ========================================================================== //
 //
-//  Matrice.h
+//  pathtool.h
 //  ---
-//  Based on OpenVR utilities
+//  Utilities for handling file path. Based on OpenVR utilities
 //
 //  Created: 2016-08-24
 //  Updated: 2016-08-24

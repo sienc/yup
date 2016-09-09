@@ -38,7 +38,7 @@ bool VRSdlApp::init()
 		return false;
 
 	// Initialize Renderable
-	this->onInit();
+	this->onRenderableInit();
 
 	mVRManager.setDisplaySize(getWindowWidth(), getWindowHeight());
 	mVRManager.setScene(this);
@@ -48,7 +48,8 @@ bool VRSdlApp::init()
 
 bool VRSdlApp::update()
 {
-	mVRManager.RenderFrame();
+	mVRManager.render();
+	mVRManager.renderDisplay();
 
 	SDL_GL_SwapWindow(sdlWindow());
 
@@ -63,7 +64,7 @@ void VRSdlApp::shutdown()
 	mVRManager.shutdownGL();
 
 	// Shutdown Renderable
-	this->onShutdown();
+	this->onRenderbleShutdown();
 
 	SdlApp::shutdown();
 }

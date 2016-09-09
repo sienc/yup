@@ -13,7 +13,7 @@
 #ifdef YUP_INCLUDE_OPENVR
 
 #include "VRManager.h"
-#include "GlUtil.h"
+#include "glutil.h"
 #include "Log.h"
 
 #include <vector>
@@ -265,13 +265,13 @@ void VRManager::ProcessVREvent(const vr::VREvent_t & event)
 //-----------------------------------------------------------------------------
 // Purpose:
 //-----------------------------------------------------------------------------
-void VRManager::RenderFrame()
+void VRManager::render()
 {
 	
 	if (!isRenderReady())
 		return;
 
-	RenderDisplay();
+	//RenderDisplay();
 	DrawControllers();
 	RenderStereoTargets();
 
@@ -282,7 +282,7 @@ void VRManager::RenderFrame()
 
 }
 
-void VRManager::RenderDisplay()
+void VRManager::renderDisplay()
 {
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // nice background color, but not black
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -299,7 +299,7 @@ void VRManager::RenderDisplay()
 		proj.perspective(mDisplayFov, aspectRatio, mNearClip, mFarClip);
 
 		Matrix4 eye;
-		mScene->onRender(proj*m_mat4HMDPose, mDisplayWidth, mDisplayHeight);
+		mScene->onRenderDisplay(proj*m_mat4HMDPose, mDisplayWidth, mDisplayHeight);
 	}
 }
 
@@ -746,8 +746,8 @@ void VRManager::UpdateHMDMatrixPose()
 	{
 		m_mat4HMDPose = m_rmat4DevicePose[vr::k_unTrackedDeviceIndex_Hmd].invert();
 
-		if (mScene)
-			mScene->onUpdate(m_mat4HMDPose);
+		//if (mScene)
+		//	mScene->onUpdate(m_mat4HMDPose);
 	}
 
 	if (mControllerId != 0 && m_rTrackedDevicePose[mControllerId].bPoseIsValid)

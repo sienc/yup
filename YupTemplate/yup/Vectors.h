@@ -6,7 +6,7 @@
 //  2D/3D/4D vectors
 //
 //  Created: 2016-08-24
-//  Updated: 2016-08-24
+//  Updated: 2016-08-31
 //
 //  (C) 2016 Yu-hsien Chang
 //
@@ -154,6 +154,10 @@ struct Vector4
 
     friend Vector4 operator*(const float a, const Vector4 vec);
     friend std::ostream& operator<<(std::ostream& os, const Vector4& vec);
+
+	// yhc added
+	float getYawAngle() { return atan2(-z, x); }  // OpenGL coordinates: starting from +X rotating along +Y
+	float getPitchAngle() { return atan2(y, sqrt(x*x + z*z)); }
 };
 
 

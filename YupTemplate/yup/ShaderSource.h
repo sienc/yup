@@ -5,7 +5,7 @@
 //  GLSL source codes
 //
 //  Created: 2016-08-24
-//  Updated: 2016-08-24
+//  Updated: 2016-09-01
 //
 //  (C) 2016 Yu-hsien Chang
 //
@@ -49,7 +49,7 @@ void main()
 }
 )"
 
-#define VCOLOR_VERTEX_SHADER R"(
+#define COLOR_VERTEX_SHADER R"(
 
 #version 330
 uniform mat4 matrix;
@@ -80,23 +80,23 @@ void main()
 }
 )"
 
-#define MONO_RESIZABLE_VERTEX_SHADER R"(
+#define UV_SCALE_VERTEX_SHADER R"(
 
 #version 330
 uniform mat4 matrix;
 layout(location = 0) in vec4 position;
 layout(location = 1) in vec2 uv;
 
-uniform float u_ratio;
-uniform float v_ratio;
+uniform float u_scale;
+uniform float v_scale;
 
 out vec2 uv_coord;
 
 void main()
 {
 	gl_Position = matrix * position;
-	uv_coord.x = uv.x * u_ratio;
-	uv_coord.y = uv.y * v_ratio;
+	uv_coord.x = uv.x * u_scale;
+	uv_coord.y = uv.y * v_scale;
 }
 )"
 
@@ -185,7 +185,7 @@ void main()
 
 )"
 
-#define VCOLOR_FRAGMENT_SHADER R"(
+#define COLOR_FRAGMENT_SHADER R"(
 
 #version 330
 in vec4 vert_color;
@@ -271,7 +271,7 @@ void main()
 		uv_coord.y < lo_bound.y ||
 		uv_coord.y > hi_bound.y))
 	{
-		outputColor = vec4(0.15, 0.15, 0.18, 0.0);
+		discard;
 	}
 	else if (color_mode == 1)
 	{

@@ -6,6 +6,13 @@ YH's Utilities for Prototyping
 ---
 Log
 ---
+2016-09-09
+* Redesigned ShaderCollection
+* Changed Renderable interface
+* Reorganized matutil.h
+* Updated VRManager
+* Added LoopThread::waitForInitResult()
+
 2016-08-25 v0.1.0
 * Automatically copy required DLL and resources to output folder
 

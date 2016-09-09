@@ -29,19 +29,19 @@ class Renderable
 public:
 
 	// Initialize the renderable object
-	virtual bool onInit() { return true; }
+	virtual bool onRenderableInit() { return true; }
 
 	// Render into a flat display
-	virtual void onRender(Matrix4 &vpMat, int width, int height) = 0;
+	virtual void onRenderDisplay(Matrix4 &vpMat, int width, int height) = 0;
 
 	// Render into a a single eye of the VR display
 	virtual void onRenderEye(vr::Hmd_Eye nEye, Matrix4 &vpMat) = 0;
 	
 	// Called by the parent once per frame
-	virtual void onUpdate(const Matrix4 &headPose) {}
+	virtual void onRenderbleUpdate(const Matrix4 &headPose) {}
 	
 	// Stop all tasks and clean up
-	virtual void onShutdown() {}
+	virtual void onRenderbleShutdown() {}
 };
 
 END_NAMESPACE_YUP_GL

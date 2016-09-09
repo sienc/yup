@@ -4,8 +4,32 @@
 //  ---
 //  GL shader wrappers
 //
+//	* In one of the header files declare:
+//  
+//    YUP_BEGIN_DECLARE_SHADER_COLLECTION(Shader)
+//    YUP_DECLARE_SHADER_PROGRAM(yup::gl::SolidProgram, Solid)
+//    ...
+//    YUP_END_DECLARE_SHADER_COLLECTION()
+//
+//
+//	* In one of the sources files define:
+//  
+//    YUP_BEGIN_DEFINE_SHADER_COLLECTION(Shader)
+//    YUP_DEFINE_SHADER_PROGRAM(yup::gl::SolidProgram, Solid)
+//    ...
+//    YUP_END_DEFINE_SHADER_COLLECTION()
+//
+//  * Stock shader programs:
+//
+//    - SolidProgram
+//    - ColorProgram
+//    - PosProgram
+//    - RgbProgram
+//    - RgbScaleProgram
+//    - StereoProgram
+//
 //  Created: 2016-08-24
-//  Updated: 2016-08-24
+//  Updated: 2016-09-01
 //
 //  (C) 2016 Yu-hsien Chang
 //
@@ -21,7 +45,7 @@
 #include "yup.h"
 #include "inc_sdl.h"
 #include "ShaderSource.h"
-#include "GlUtil.h"
+#include "glutil.h"
 #include "Matrices.h"
 
 #define TEXTURE_RGB			GL_TEXTURE0
@@ -152,7 +176,11 @@ public:
 };
 
 //----------------------------------------------------------------------------//
-// Solid color
+// One solid color for all vertices
+//
+// - vec4 VertexArray(loc 0) : vertex position
+// - Mat4 MvpMatrix : MVP matrix
+// - Vec4 Color : color for all vertices
 //----------------------------------------------------------------------------//
 class SolidProgram : public ShaderProgram
 {
@@ -171,16 +199,19 @@ public:
 
 
 //----------------------------------------------------------------------------//
-// Solid color
+// Individual color for every vertices
+//
+// - vec4 VertexArray(loc 0) : vertex position
+// - vec4 VertexArray(loc 1) : vertex color
+// - Mat4 MvpMatrix : MVP matrix
 //----------------------------------------------------------------------------//
-class VColorProgram : public ShaderProgram
+class ColorProgram : public ShaderProgram
 {
 public:
 	GlUniformMat4 MvpMatrix;
-	GlUniformVec4 Color;
 
 public:
-	VColorProgram() : ShaderProgram("VColor", VCOLOR_VERTEX_SHADER, VCOLOR_FRAGMENT_SHADER) {}
+	ColorProgram() : ShaderProgram("Color", COLOR_VERTEX_SHADER, COLOR_FRAGMENT_SHADER) {}
 
 	virtual void onCompile() override {
 		MvpMatrix.loc = getLoc("matrix");
@@ -190,6 +221,9 @@ public:
 
 //----------------------------------------------------------------------------//
 // Color based on world position
+//
+// - vec4 VertexArray(loc 0) : vertex position
+// - Mat4 MvpMatrix : MVP matrix
 //----------------------------------------------------------------------------//
 class PosProgram : public ShaderProgram
 {
@@ -206,6 +240,9 @@ public:
 
 //----------------------------------------------------------------------------//
 // Color based on z-depth
+//
+// - vec4 VertexArray(loc 0) : vertex position
+// - Mat4 MvpMatrix : MVP matrix
 //----------------------------------------------------------------------------//
 class DepthProgram : public ShaderProgram
 {
@@ -222,6 +259,11 @@ public:
 
 //----------------------------------------------------------------------------//
 // Maps a mono RGB texture
+//
+// - vec4 VertexArray(loc 0) : vertex position
+// - vec2 VertexArray(loc 1) : vertex UV
+// - Mat4 MvpMatrix : MVP matrix
+// - TEXTURE_RGB : RGB texture
 //----------------------------------------------------------------------------//
 class RgbProgram : public ShaderProgram
 {
@@ -239,28 +281,47 @@ public:
 };
 
 //----------------------------------------------------------------------------//
-// Maps a mono resizable RGB texture
+// Maps a scaled mono RGB texture
+//
+// - vec4 VertexArray(loc 0) : vertex position
+// - vec2 VertexArray(loc 1) : vertex UV
+// - Mat4 MvpMatrix : MVP matrix
+// - Float UScale : U scale factor
+// - Float VScale : V scale factor
+// - TEXTURE_RGB : RGB texture
 //----------------------------------------------------------------------------//
-class MonoResizableProgram : public ShaderProgram
+class RgbScaleProgram : public ShaderProgram
 {
 public:
 	GlUniformMat4 MvpMatrix;
-	GlUniformFloat URatio;
-	GlUniformFloat VRatio;
+	GlUniformFloat UScale;
+	GlUniformFloat VScale;
 
 public:
-	MonoResizableProgram() : ShaderProgram("MonoResize", MONO_RESIZABLE_VERTEX_SHADER, RGB_FRAGMENT_SHADER) {}
+	RgbScaleProgram() : ShaderProgram("RgbScale", UV_SCALE_VERTEX_SHADER, RGB_FRAGMENT_SHADER) {}
 
 	virtual void onCompile() override {
 		MvpMatrix.loc = getLoc("matrix");
-		URatio.loc = getLoc("u_ratio");
-		VRatio.loc = getLoc("v_ratio");
+		UScale.loc = getLoc("u_scale");
+		VScale.loc = getLoc("v_scale");
 	}
 };
 
 //----------------------------------------------------------------------------//
 // Maps a mono or stereo texture
 // Texture can be RGB or HSV
+//
+// - vec4 VertexArray(loc 0) : vertex position
+// - vec2 VertexArray(loc 1) : vertex UV
+// - Mat4 MvpMatrix : MVP matrix
+// - Int UVMode : MVP matrix
+// - Int ColorMode : COLORMODE_RGB or COLORMODE_HSV
+// - Float Opacity : Opacity of the texture
+// - Int ClipOutOfBound : if not 0 then out of bound pixels will be discarded
+// - TEXTURE_RGB : RGB texture
+// - TEXTURE_YUV_Y : Y comopnent of YUV texture
+// - TEXTURE_YUV_U : U comopnent of YUV texture
+// - TEXTURE_YUV_V : V comopnent of YUV texture
 //----------------------------------------------------------------------------//
 class StereoProgram : public ShaderProgram
 {
@@ -272,7 +333,7 @@ public:
 	GlUniformInt ClipOutOfBound;
 
 public:
-	StereoProgram() : ShaderProgram("Mono", STEREO_VERTEX_SHADER, STEREO_RGBHSV_FRAGMENT_SHADER) {}
+	StereoProgram() : ShaderProgram("Stereo", STEREO_VERTEX_SHADER, STEREO_RGBHSV_FRAGMENT_SHADER) {}
 
 	virtual void onCompile() override {
 
@@ -288,52 +349,61 @@ public:
 	}
 };
 
-
-//============================================================================//
-//
-// Shader Collection
-//
-//============================================================================//
-
-class ShaderCollection
-{
-private:
-	std::vector<ShaderProgram *> mPrograms;
-
-public:
-	SolidProgram Solid;
-	VColorProgram VColor;
-	PosProgram Pos;
-	DepthProgram Depth;
-	//MonoProgram Mono;
-	//MonoResizableProgram MonoResizable;
-	//StereoProgram Stereo;
-
-public:
-	ShaderCollection() {
-		mPrograms.push_back(&Solid);
-		mPrograms.push_back(&VColor);
-		mPrograms.push_back(&Pos);
-		mPrograms.push_back(&Depth);
-	}
-
-	bool Compile() {
-		for (ShaderProgram *program : mPrograms)
-		{
-			if (!program->compile())
-				return false;
-		}
-		return true;
-	}
-
-	void Cleanup() {
-		for (ShaderProgram *program : mPrograms)
-			program->cleanup();
-	}
-};
-
-extern ShaderCollection Shader;
-
 END_NAMESPACE_YUP_GL
+
+
+//============================================================================//
+//
+// ShaderCollection
+//
+//============================================================================//
+
+//----------------------------------------------------------------------------//
+// Declare ShaderCollection class
+//----------------------------------------------------------------------------//
+
+#define YUP_BEGIN_DECLARE_SHADER_COLLECTION(name) \
+extern class ShaderCollection name; \
+class ShaderCollection \
+{ \
+public: \
+	ShaderCollection(); \
+	bool Compile(); \
+	void Cleanup(); \
+private: \
+	std::vector<yup::gl::ShaderProgram *> mPrograms;
+
+
+#define YUP_DECLARE_SHADER_PROGRAM(program, name) \
+public: program name;
+
+
+#define YUP_END_DECLARE_SHADER_COLLECTION() };
+
+//----------------------------------------------------------------------------//
+// Define ShaderCollection class
+//----------------------------------------------------------------------------//
+
+#define YUP_BEGIN_DEFINE_SHADER_COLLECTION(name) \
+ShaderCollection name; \
+bool ShaderCollection::Compile() { \
+	for (yup::gl::ShaderProgram *program : mPrograms) \
+	{ \
+		if (!program->compile()) \
+			return false; \
+	} \
+	return true; \
+} \
+void ShaderCollection::Cleanup() { \
+	for (yup::gl::ShaderProgram *program : mPrograms) \
+		program->cleanup(); \
+}\
+ShaderCollection::ShaderCollection() {
+
+#define YUP_DEFINE_SHADER_PROGRAM(program, name) \
+mPrograms.push_back(static_cast<yup::gl::ShaderProgram *>(&name));
+
+#define YUP_END_DEFINE_SHADER_COLLECTION() }
+
 
 #endif // YUP_INCLUDE_GLEW
