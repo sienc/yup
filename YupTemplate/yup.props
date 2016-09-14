@@ -14,7 +14,8 @@
   <!-- User Macros -->
   <PropertyGroup Label="UserMacros">
     <YupLibDir>..\..\..\Libraries\</YupLibDir>
-    <YupBuildDir>$(SolutionDir)build\</YupBuildDir>
+    <YupOutDir>$(SolutionDir)build\</YupOutDir>
+    <YupIntDir>$(SolutionDir)interm\</YupIntDir>
   </PropertyGroup>
   <!-- Global Settings -->
   <PropertyGroup>
@@ -74,13 +75,16 @@
     <BuildMacro Include="YupLibDir">
       <Value>$(YupLibDir)</Value>
     </BuildMacro>
-    <BuildMacro Include="YupBuildDir">
-      <Value>$(YupBuildDir)</Value>
+    <BuildMacro Include="YupOutDir">
+      <Value>$(YupOutDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="YupIntDir">
+      <Value>$(YupIntDir)</Value>
     </BuildMacro>
   </ItemGroup>
   <!-- Global Settings -->
   <PropertyGroup>
-    <OutDir>$(YupBuildDir)$(YupPlatform)\$(Configuration)\</OutDir>
-    <IntDir>$(YupPlatform)\$(Configuration)\</IntDir>
+    <OutDir>$(YupOutDir)$(YupPlatform)\$(Configuration)\</OutDir>
+    <IntDir>$(YupIntDir)$(ProjectName)\$(YupPlatform)\$(Configuration)\</IntDir>
   </PropertyGroup>
 </Project>

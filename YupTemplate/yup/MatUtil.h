@@ -5,7 +5,7 @@
 //  Utility functions for matrix handling
 //
 //  Created: 2016-08-24
-//  Updated: 2016-08-24
+//  Updated: 2016-09-13
 //
 //  (C) 2016 Yu-hsien Chang
 //
@@ -175,38 +175,34 @@ static inline Matf CVPointToCVMat41(const Point3f &pt)
 }
 
 // -------------------------------------------------------------------------- //
-// Fill a CVMatU8 with provided data
+// Fill a CVMat with provided data
+// Assume the CVMat data type is T
 // -------------------------------------------------------------------------- //
-static void FillCVMatU8(cv::Mat &mat, const uint8_t *data, int srcChannel = 0)
+template<typename T>
+static void FillCVMat(cv::Mat &mat, const T *data, int srcChannel = 0)
 {
-	// accept only char type matrices
-	CV_Assert(mat.depth() == CV_8U);
-
 	const int channels = mat.channels();
-	CV_Assert(channels >= srcChannel);
+	CV_Assert(srcChannel == 0 || channels <= srcChannel);
 
 	int nRows = mat.rows;
 	int nCols = mat.cols;
+
+	if (mat.isContinuous())
+	{
+		nCols *= nRows;
+		nRows = 1;
+	}
 
 	if (srcChannel == 0 || srcChannel == channels)
 	{
 		nCols *= channels;
 
 		// Channel matched, do bulk copy
-		if (mat.isContinuous())
-		{
-			nCols *= nRows;
-			nRows = 1;
-		}
-
-		uint8_t* p;
+		T* p;
 		for (int r = 0; r < nRows; ++r)
 		{
-			p = mat.ptr<uint8_t>(r);
-			memcpy(p, data, nCols);
-			// TODO: use memcpy
-			//for (int c = 0; c < nCols; ++c)
-			//	p[c] = data[c];
+			p = mat.ptr<T>(r);
+			memcpy(p, data, nCols * sizeof(T));
 
 			data += nCols;
 		}
@@ -214,18 +210,27 @@ static void FillCVMatU8(cv::Mat &mat, const uint8_t *data, int srcChannel = 0)
 	else
 	{
 		// Channel does not match, copy one by one
-		uint8_t* p;
+		T* p;
 		for (int r = 0; r < nRows; ++r)
 		{
-			p = mat.ptr<uint8_t>(r);
+			p = mat.ptr<T>(r);
 			for (int c = 0; c < nCols; ++c)
-			{
-				for (int ch = 0; ch < channels; ch++)
-					p[c * channels + ch] = data[c * srcChannel + ch];
-			}
+				memcpy(p + c * channels, data + c * srcChannel, channels * sizeof(T));
+
 			data += nCols * srcChannel;
 		}
 	}
+}
+
+// -------------------------------------------------------------------------- //
+// Fill a CVMatU8 with provided data
+// -------------------------------------------------------------------------- //
+static inline void FillCVMatU8(cv::Mat &mat, const uint8_t *data, int srcChannel = 0)
+{
+	// accept only char type matrices
+	CV_Assert(mat.depth() == CV_8U);
+
+	FillCVMat<uint8_t>(mat, data, srcChannel);
 }
 
 // -------------------------------------------------------------------------- //
@@ -236,48 +241,7 @@ static void FillCVMatU16(cv::Mat &mat, const uint16_t *data, int srcChannel = 0)
 	// accept only char type matrices
 	CV_Assert(mat.depth() == CV_16U);
 
-	const int channels = mat.channels();
-	int nRows = mat.rows;
-	int nCols = mat.cols;
-
-	if (srcChannel == 0 || srcChannel == channels)
-	{
-		nCols *= channels;
-
-		// Channel matched, do bulk copy
-		if (mat.isContinuous())
-		{
-			nCols *= nRows;
-			nRows = 1;
-		}
-
-		uint16_t* p;
-		for (int r = 0; r < nRows; ++r)
-		{
-			p = mat.ptr<uint16_t>(r);
-			memcpy(p, data, nCols * 2);
-			// TODO: use memcpy
-			//for (int c = 0; c < nCols; ++c)
-			//	p[c] = data[c];
-
-			data += nCols;
-		}
-	}
-	else
-	{
-		// Channel does not match, copy one by one
-		uint16_t* p;
-		for (int r = 0; r < nRows; ++r)
-		{
-			p = mat.ptr<uint16_t>(r);
-			for (int c = 0; c < nCols; ++c)
-			{
-				for (int ch = 0; ch < channels; ch++)
-					p[c * channels + ch] = data[c * srcChannel + ch];
-			}
-			data += nCols * srcChannel;
-		}
-	}
+	FillCVMat<uint16_t>(mat, data, srcChannel);
 }
 
 #endif // YUP_INCLUDE_OPENCV

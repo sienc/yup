@@ -5,7 +5,7 @@
 //  A generalized FrameBuffer class that automatically manages the storage
 //
 //  Created: 2016-08-24
-//  Updated: 2016-09-09
+//  Updated: 2016-09-13
 //
 //  (C) 2016 Yu-hsien Chang
 //
@@ -101,31 +101,21 @@ public:
 
 	void setData(const uint8_t *colorData, const uint8_t *depthData) {
 
-		uint8_t *dst = mData;
-
 		// Expand for more efficiency
 
 		if (mColorDepth >= 4)
 		{
-			// Copy both color and depth
-			for (int i = 0; i<mHeight; i++)
+			const int nData = mWidth * mHeight;
+
+			for (int c = 0; c < nData; c++)
 			{
-				for (int j = 0; j<mWidth; j++)
-				{
-					if (colorData)
-					{
-						dst[0] = *colorData++;
-						dst[1] = *colorData++;
-						dst[2] = *colorData++;
-					}
+				if (colorData)
+					memcpy(mData + c * mColorDepth, colorData + c * 3, 3);
 
-					if (depthData)
-						dst[3] = *depthData++;
-					else
-						dst[3] = 0xFF;
-
-					dst += mColorDepth;
-				}
+				if (depthData)
+					mData[c * mColorDepth + 3] = depthData[c];
+				else
+					mData[c * mColorDepth + 3] = 0xFF;
 			}
 		}
 		else if (mColorDepth == 3 && colorData)
@@ -143,57 +133,21 @@ public:
 	void operator=(const FrameBuffer & buffer)
 	{
 		resize(buffer.mWidth, buffer.mHeight, buffer.mColorDepth);
-		memcpy_s(mData, size(), buffer.mData, size());
+		memcpy(mData, buffer.mData, size());
 	}
 
 #ifdef YUP_INCLUDE_OPENCV
 
-	void setData(const cv::Mat &colorMat, const cv::Mat &depthMat, bool showDepth = false) {
+	void setData(const cv::Mat &colorMat, const cv::Mat &depthMat) {
 
 		// accept only char type matrices
 		CV_Assert(colorMat.depth() == CV_8U && colorMat.elemSize() == 3);
 		CV_Assert(depthMat.depth() == CV_8U && depthMat.elemSize() == 1);
 		CV_Assert(colorMat.rows == depthMat.rows && colorMat.cols == depthMat.cols);
 
-		int width = colorMat.cols;
-		int height = colorMat.rows;
+		CV_Assert(colorMat.isContinuous() && depthMat.isContinuous());
 
-		// Resize mBackBuffer to fit the image
-		resize(width, height);
-
-		if (colorMat.isContinuous() && depthMat.isContinuous())
-		{
-			width *= height;
-			height = 1;
-		}
-
-		uint8_t *dst = mData;
-		const uint8_t *pColor;
-		const uint8_t *pDepth;
-		for (int h = 0; h < height; ++h)
-		{
-			pColor = colorMat.ptr<uint8_t>(h);
-			pDepth = depthMat.ptr<uint8_t>(h);
-			for (int w = 0; w < width; ++w)
-			{
-				if (!showDepth)
-				{
-					dst[0] = pColor[w * 3];
-					dst[1] = pColor[w * 3 + 1];
-					dst[2] = pColor[w * 3 + 2];
-					dst[3] = pDepth[w];
-				}
-				else
-				{
-					dst[0] = pDepth[w];
-					dst[1] = pDepth[w];
-					dst[2] = pDepth[w];
-					dst[3] = pDepth[w];
-				}
-
-				dst += mColorDepth;
-			}
-		}
+		setData(colorMat.ptr<uint8_t>(0), depthMat.ptr<uint8_t>(0));
 	}
 
 	void fillMat(cv::Mat &mat) const {
